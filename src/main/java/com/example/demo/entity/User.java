@@ -1,0 +1,29 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import java.util.List;
+import lombok.*;
+
+@Getter
+@Setter
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
+    private String name;
+    private String email;
+    private String phone;
+    private String address;
+
+    @ElementCollection
+    private List<String> skills;
+
+    @ElementCollection
+    private List<String> interests;
+
+    private String availability;
+
+}
