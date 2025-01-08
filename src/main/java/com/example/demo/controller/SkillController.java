@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.example.demo.entity.Skill;
 import com.example.demo.service.SkillService;
 
@@ -16,22 +18,23 @@ public class SkillController {
     private SkillService skillService;
 
     @GetMapping
-    public List<Skill> getAllSkills() {
-        return skillService.getAllSkills();
+    public ResponseEntity<List<Skill>> getAllSkills() {
+        return new ResponseEntity<>(skillService.getAllSkills(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Skill getSkillById(@PathVariable Long id) {
-        return skillService.getSkillById(id);
+    public ResponseEntity<Skill> getSkillById(@PathVariable Long id) {
+        return new ResponseEntity<>(skillService.getSkillById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Skill createSkill(@RequestBody Skill skill) {
-        return skillService.saveSkill(skill);
+    public ResponseEntity<Skill> createSkill(@RequestBody Skill skill) {
+        return new ResponseEntity<>(skillService.saveSkill(skill), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSkill(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSkill(@PathVariable Long id) {
         skillService.deleteSkill(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

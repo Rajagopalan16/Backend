@@ -2,11 +2,18 @@ package com.example.demo.DTOs;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import jakarta.validation.constraints.NotBlank;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SkillDTO {
-    private Long skillId;
-    private String name; // Name of the skill (e.g., "Project Management")
-    private String description; // Description of the skill
+    private Long skillId; // Unique ID for the skill
+
+    @NotBlank(message = "Skill name is required")
+    private String name; // Name of the skill
 }

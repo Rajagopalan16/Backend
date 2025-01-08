@@ -2,19 +2,25 @@ package com.example.demo.DTOs;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-import java.util.List;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class VolunteerOpportunityDTO {
-    private Long opportunityId;
+    private Long opportunityId; // Unique ID for the opportunity
+
+    @NotBlank(message = "Opportunity name is required")
     private String name; // Name of the opportunity
+
+    @NotBlank(message = "Opportunity description is required")
     private String description; // Description of the opportunity
-    private String location; // Location of the opportunity
-    private String startDate; // Start date
-    private String endDate; // End date
-    private Long organizationId; // ID of the hosting organization
-    private List<TaskDTO> tasks; // List of related tasks
-    private List<SkillDTO> requiredSkills; // List of required skills
+
+    @NotNull(message = "Organization ID is required")
+    private Long organizationId; // Associated organization ID
 }

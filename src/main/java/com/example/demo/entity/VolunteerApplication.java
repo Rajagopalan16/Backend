@@ -8,6 +8,9 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class VolunteerApplication {
 
     @Id

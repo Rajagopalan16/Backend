@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-public class VolunteerOpportunity {
+@NoArgsConstructor
+@AllArgsConstructor
 
+public class VolunteerOpportunity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long opportunityId;

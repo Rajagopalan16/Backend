@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Rating;
@@ -16,32 +18,23 @@ public class RatingController {
     private RatingService ratingService;
 
     @GetMapping
-    public List<Rating> getAllRatings() {
-        return ratingService.getAllRatings();
+    public ResponseEntity<List<Rating>> getAllRatings() {
+        return new ResponseEntity<>(ratingService.getAllRatings(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Rating getRatingById(@PathVariable Long id) {
-        return ratingService.getRatingById(id);
-    }
-
-    @GetMapping("/opportunity/{opportunityId}")
-    public List<Rating> getRatingsByOpportunityId(@PathVariable Long opportunityId) {
-        return ratingService.getRatingsByOpportunityId(opportunityId);
-    }
-
-    @GetMapping("/user/{userId}")
-    public List<Rating> getRatingsByUserId(@PathVariable Long userId) {
-        return ratingService.getRatingsByUserId(userId);
+    public ResponseEntity<Rating> getRatingById(@PathVariable Long id) {
+        return new ResponseEntity<>(ratingService.getRatingById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Rating createRating(@RequestBody Rating rating) {
-        return ratingService.saveRating(rating);
+    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
+        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteRating(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteRating(@PathVariable Long id) {
         ratingService.deleteRating(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
