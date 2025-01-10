@@ -27,4 +27,19 @@ public class Task {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void setName(Object name2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setDescription(Object description2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setVolunteerOpportunityId(Object volunteerOpportunityId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

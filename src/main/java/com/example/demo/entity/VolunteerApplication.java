@@ -21,5 +21,17 @@ public class VolunteerApplication {
     private Long opportunityId;
     private LocalDate applicationDate;
     private String status;
+	public void setVolunteerId(Object volunteerId) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setOpportunityId(Object opportunityId2) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setStatus(Object status2) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

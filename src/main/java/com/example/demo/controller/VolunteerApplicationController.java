@@ -5,13 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.DTOs.VolunteerApplicationDTO;
 import com.example.demo.entity.VolunteerApplication;
 import com.example.demo.service.VolunteerApplicationService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/applications")
+@RequestMapping("/volunteer-applications")
 public class VolunteerApplicationController {
 
     @Autowired
@@ -22,14 +24,24 @@ public class VolunteerApplicationController {
         return new ResponseEntity<>(applicationService.getAllApplications(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VolunteerApplication> getApplicationById(@PathVariable Long id) {
-        return new ResponseEntity<>(applicationService.getApplicationById(id), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<VolunteerApplication> createApplication(@Valid @RequestBody VolunteerApplicationDTO applicationDto) {
+        VolunteerApplication application = new VolunteerApplication();
+        application.setVolunteerId(applicationDto.getVolunteerId());
+        application.setOpportunityId(applicationDto.getOpportunityId());
+        application.setStatus(applicationDto.getStatus());
+
+        return new ResponseEntity<>(applicationService.saveApplication(application), HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<VolunteerApplication> createApplication(@RequestBody VolunteerApplication application) {
-        return new ResponseEntity<>(applicationService.saveApplication(application), HttpStatus.CREATED);
+    @PutMapping("/{id}")
+    public ResponseEntity<VolunteerApplication> updateApplication(@PathVariable Long id, @Valid @RequestBody VolunteerApplicationDTO applicationDto) {
+        VolunteerApplication application = applicationService.getApplicationById(id);
+        application.setVolunteerId(applicationDto.getVolunteerId());
+        application.setOpportunityId(applicationDto.getOpportunityId());
+        application.setStatus(applicationDto.getStatus());
+
+        return new ResponseEntity<>(applicationService.saveApplication(application), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

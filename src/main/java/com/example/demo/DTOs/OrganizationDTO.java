@@ -23,5 +23,20 @@ public class OrganizationDTO {
 
     @NotBlank(message = "Contact Email is required")
     private String contactEmail; // Contact email for the organization
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getContactEmail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

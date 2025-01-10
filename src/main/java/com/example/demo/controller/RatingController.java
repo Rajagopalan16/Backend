@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.DTOs.RatingDTO;
 import com.example.demo.entity.Rating;
 import com.example.demo.service.RatingService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,14 +24,26 @@ public class RatingController {
         return new ResponseEntity<>(ratingService.getAllRatings(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Rating> getRatingById(@PathVariable Long id) {
-        return new ResponseEntity<>(ratingService.getRatingById(id), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<Rating> createRating(@Valid @RequestBody RatingDTO ratingDto) {
+        Rating rating = new Rating();
+        rating.setRatingValue(ratingDto.getRatingValue());
+        rating.setFeedback(ratingDto.getFeedback());
+        rating.setUserId(ratingDto.getUserId());
+        rating.setOrganizationId(ratingDto.getOrganizationId());
+
+        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
-        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.CREATED);
+    @PutMapping("/{id}")
+    public ResponseEntity<Rating> updateRating(@PathVariable Long id, @Valid @RequestBody RatingDTO ratingDto) {
+        Rating rating = ratingService.getRatingById(id);
+        rating.setRatingValue(ratingDto.getRatingValue());
+        rating.setFeedback(ratingDto.getFeedback());
+        rating.setUserId(ratingDto.getUserId());
+        rating.setOrganizationId(ratingDto.getOrganizationId());
+
+        return new ResponseEntity<>(ratingService.saveRating(rating), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

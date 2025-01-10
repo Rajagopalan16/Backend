@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.DTOs.OrganizationDTO;
 import com.example.demo.entity.Organization;
 import com.example.demo.service.OrganizationService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +22,6 @@ public class OrganizationController {
     @GetMapping
     public ResponseEntity<List<Organization>> getAllOrganizations() {
         return new ResponseEntity<>(organizationService.getAllOrganizations(), HttpStatus.OK);
-        // Also check if suppose there are some errors in the code, then you can return HTTP status code of FORBIDDEN, UNAUTHORIZED, NOT_FOUND, etc.
     }
 
     @GetMapping("/{id}")
@@ -29,13 +30,28 @@ public class OrganizationController {
     }
 
     @PostMapping
-    public ResponseEntity<Organization> createOrganization(@RequestBody Organization organization) {
+    public ResponseEntity<Organization> createOrganization(@Valid @RequestBody OrganizationDTO organizationDto) {
+        Organization organization = new Organization();
+        organization.setName(organizationDto.getName());
+        organization.setDescription(organizationDto.getDescription());
+        organization.setContactEmail(organizationDto.getContactEmail());
+
         return new ResponseEntity<>(organizationService.saveOrganization(organization), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Organization> updateOrganization(@PathVariable Long id, @Valid @RequestBody OrganizationDTO organizationDto) {
+        Organization organization = organizationService.getOrganizationById(id);
+        organization.setName(organizationDto.getName());
+        organization.setDescription(organizationDto.getDescription());
+        organization.setContactEmail(organizationDto.getContactEmail());
+
+        return new ResponseEntity<>(organizationService.saveOrganization(organization), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrganization(@PathVariable Long id) {
         organizationService.deleteOrganization(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Fixed the error
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

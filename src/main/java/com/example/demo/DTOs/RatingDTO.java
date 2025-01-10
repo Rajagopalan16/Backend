@@ -29,4 +29,24 @@ public class RatingDTO {
 
     @NotBlank(message = "Organization ID is required")
     private Long organizationId; // ID of the organization being rated
+
+	public Object getRatingValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getFeedback() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getUserId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getOrganizationId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

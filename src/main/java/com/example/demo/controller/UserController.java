@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.DTOs.UserDTO;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,14 +24,24 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDto) {
+        User user = new User();
+        user.setFirstName(userDto.getFirstName());
+        user.setFirstName(userDto.getFirstName());
+        user.setEmail(userDto.getEmail());
+
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDto) {
+        User user = userService.getUserById(id);
+        user.setFirstName(userDto.getFirstName());
+        user.setFirstName(userDto.getFirstName());
+        user.setEmail(userDto.getEmail());
+
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

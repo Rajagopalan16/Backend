@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 
 public class Organization {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long organizationId;
@@ -21,5 +20,17 @@ public class Organization {
     private String email;
     private String phone;
     private String address;
+	public void setName(Object name2) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setDescription(Object description2) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setContactEmail(Object contactEmail) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

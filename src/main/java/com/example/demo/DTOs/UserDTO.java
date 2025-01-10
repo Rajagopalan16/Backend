@@ -27,4 +27,14 @@ public class UserDTO {
 
     @NotBlank(message = "Password is required")
     private String password; // User's password
+
+	public Object getFirstName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getEmail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

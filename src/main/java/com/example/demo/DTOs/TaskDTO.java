@@ -23,4 +23,19 @@ public class TaskDTO {
 
     @NotNull(message = "Volunteer Opportunity ID is required")
     private Long volunteerOpportunityId; // Associated volunteer opportunity ID
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getVolunteerOpportunityId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

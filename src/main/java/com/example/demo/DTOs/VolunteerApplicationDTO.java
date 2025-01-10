@@ -23,4 +23,19 @@ public class VolunteerApplicationDTO {
 
     @NotBlank(message = "Status is required")
     private String status; // Status of the application (e.g., pending, approved, rejected)
+
+	public Object getVolunteerId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getOpportunityId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getStatus() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -25,4 +25,24 @@ public class Rating {
 
     private int score; // Rating score (e.g., 1 to 5)
     private String comment; // Optional comment for additional feedback
+	public void setRatingValue(Object ratingValue) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setRatingValue1(Object ratingValue) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setFeedback(Object feedback) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setUserId(Object userId) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void setOrganizationId(Object organizationId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

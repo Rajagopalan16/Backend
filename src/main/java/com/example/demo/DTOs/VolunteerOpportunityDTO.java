@@ -23,4 +23,19 @@ public class VolunteerOpportunityDTO {
 
     @NotNull(message = "Organization ID is required")
     private Long organizationId; // Associated organization ID
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getOrganizationId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

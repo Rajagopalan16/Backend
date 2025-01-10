@@ -29,4 +29,14 @@ public class User {
 
     private String availability;
 
+	public void setFirstName(Object firstName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setEmail(Object email2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

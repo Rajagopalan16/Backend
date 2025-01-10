@@ -5,13 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.DTOs.VolunteerOpportunityDTO;
 import com.example.demo.entity.VolunteerOpportunity;
 import com.example.demo.service.VolunteerOpportunityService;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/opportunities")
+@RequestMapping("/volunteer-opportunities")
 public class VolunteerOpportunityController {
 
     @Autowired
@@ -22,14 +24,24 @@ public class VolunteerOpportunityController {
         return new ResponseEntity<>(opportunityService.getAllOpportunities(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<VolunteerOpportunity> getOpportunityById(@PathVariable Long id) {
-        return new ResponseEntity<>(opportunityService.getOpportunityById(id), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<VolunteerOpportunity> createOpportunity(@Valid @RequestBody VolunteerOpportunityDTO opportunityDto) {
+        VolunteerOpportunity opportunity = new VolunteerOpportunity();
+        opportunity.setName(opportunityDto.getName());
+        opportunity.setDescription(opportunityDto.getDescription());
+        opportunity.setOrganizationId(opportunityDto.getOrganizationId());
+
+        return new ResponseEntity<>(opportunityService.saveOpportunity(opportunity), HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<VolunteerOpportunity> createOpportunity(@RequestBody VolunteerOpportunity opportunity) {
-        return new ResponseEntity<>(opportunityService.saveOpportunity(opportunity), HttpStatus.CREATED);
+    @PutMapping("/{id}")
+    public ResponseEntity<VolunteerOpportunity> updateOpportunity(@PathVariable Long id, @Valid @RequestBody VolunteerOpportunityDTO opportunityDto) {
+        VolunteerOpportunity opportunity = opportunityService.getOpportunityById(id);
+        opportunity.setName(opportunityDto.getName());
+        opportunity.setDescription(opportunityDto.getDescription());
+        opportunity.setOrganizationId(opportunityDto.getOrganizationId());
+
+        return new ResponseEntity<>(opportunityService.saveOpportunity(opportunity), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

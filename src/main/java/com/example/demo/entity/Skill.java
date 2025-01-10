@@ -24,4 +24,14 @@ public class Skill {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user; // Linking skill to a specific user
+
+	public void setName(Object name2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setDescription(Object description2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

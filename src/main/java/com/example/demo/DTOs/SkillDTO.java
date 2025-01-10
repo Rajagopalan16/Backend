@@ -16,4 +16,14 @@ public class SkillDTO {
 
     @NotBlank(message = "Skill name is required")
     private String name; // Name of the skill
+
+	public Object getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
